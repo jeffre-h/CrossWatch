@@ -19,8 +19,8 @@ const CollectionsList = () => {
 
             if (Array.isArray(data) && data.length >= 12) {
                 const groups = [];
-                for (let i = 0; i < data.length; i += 4) { 
-                    groups.push(data.slice(i, i + 4));
+                for (let i = 0; i < data.length; i += 3) { 
+                    groups.push(data.slice(i, i + 3));
                 }
                 setCollections(groups);
             } else {
@@ -40,6 +40,7 @@ const CollectionsList = () => {
         Array.isArray(group) ? (
           <Grid key={groupIndex} item sx={{ marginLeft: groupIndex > 0 ? '-130px' : '0px', zIndex: collections.length - groupIndex }}>
             {group.map((movie, movieIndex) => (
+              <>
               <Card key={movie.title} sx={{ width: 250, height: 350, marginBottom: '10px', position: 'relative' }}>
                 <CardMedia
                   component="img"
@@ -53,6 +54,8 @@ const CollectionsList = () => {
                   </Typography>
                 </CardContent>
               </Card>
+              <div style={{height: '20px'}}></div>
+              </>
             ))}
           </Grid>
         ) : null 
