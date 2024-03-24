@@ -2,13 +2,16 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 const movieRoutes = require('./routes/movies');
+const userRoutes = require('./routes/users')
 
 // express app
 const app = express()
 
 // middleware
 app.use(express.json())
+app.use(cors()); 
 
 // routes
 app.get('/', (req, res) => {
@@ -16,6 +19,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/movies', movieRoutes);
+
+app.use('/api/users', userRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

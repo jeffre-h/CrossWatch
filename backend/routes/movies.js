@@ -7,7 +7,7 @@ const {
 
 const router = express.Router();
 
-// Sync movies with TMDB API
+// Sync movies with TMDB
 router.get('/sync-tmdb', syncMoviesWithTMDB);
 
 // GET all movies

@@ -42,6 +42,22 @@ const loginUser = async (req, res) => {
     }
   };
   
+const getUserInfo = async (req, res) => {
+  try {
+      // Assuming that the user's ID is passed via the URL as a parameter
+      const user = await User.findById(req.params.userId);
+      if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Send back the user information, excluding sensitive data like the password
+      const { password, ...userInfo } = user.toObject();
+      res.json(userInfo);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+  };
+  
 
 module.exports = { 
     registerUser,
