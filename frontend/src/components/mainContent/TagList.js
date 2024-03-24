@@ -3,15 +3,11 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 const TagList = ({ activeTag, onTagClick }) => {
- 
-    // const handleClick = (tag) => {
-    //     setActiveTag(tag);
-    // };
 
     const tags = [
-        "Popular", "For You", "Most Reviewed", "Most Contreversial", "Trending", "Latest"
+        "All", "Popular", "For You", "Most Reviewed", "Most Contreversial", "Trending", "Latest"
     ];
-    const enabledTags = ["For You", "Popular"];
+    const enabledTags = ["All", "For You", "Popular"];
 
     return (
         <Stack direction="row" spacing={2}>

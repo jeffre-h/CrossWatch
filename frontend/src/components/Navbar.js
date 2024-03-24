@@ -5,7 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function ButtonAppBar({username}) {
+export default function ButtonAppBar({username, onPageClick}) {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: '#fff', color: '#000' }}>
@@ -13,8 +13,8 @@ export default function ButtonAppBar({username}) {
         <div>
           <span style={{fontWeight: 'bold', fontSize: '20px'}}>CROSS WATCH</span> { /* STILL NEED TO ADD LOGO  */ }
 
-          <Button color="inherit">Explore</Button>
-          <Button color="inherit">Collections</Button>
+          <Button color="inherit" onClick={() => {onPageClick('Explore')}}>Explore</Button>
+          <Button color="inherit" onClick={() => {onPageClick('Collections')}}>Collections</Button>
         </div>
 
         <div style={{marginLeft: 'auto'}}>
