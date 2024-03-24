@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar';
 import FriendsList from '../friendList/FriendsList';
 import TagList from '../mainContent/TagList';
+import CollectionsTagList from '../mainContent/CollectionsTagList';
+import CollectionsList from '../mainContent/CollectionsList';
 import MovieList from '../mainContent/MovieList';
 
 import { useLocation } from 'react-router-dom';
@@ -13,10 +15,15 @@ const HomePage = () => {
 
     const [activeTag, setActiveTag] = useState("Popular");
     const [currentPage, setCurrentPage] = useState("Explore");
+    const [activeCollectionTag, setActiveCollectionTag] = useState("All");
 
     const handleTagClick = (tag) => {
         setActiveTag(tag);
     };
+
+    const handleCollectionTagClick = (tag) => {
+        setActiveCollectionTag(tag);
+    }
 
     const handlePageClick = (page) => {
         setCurrentPage(page);
@@ -34,7 +41,10 @@ const HomePage = () => {
                             <MovieList category={activeTag}/>
                         </>
                         :
-                        <div>Collections Page</div>
+                        <>
+                            <CollectionsTagList activeCollectionTag={activeCollectionTag} onCollectionTagClick={handleCollectionTagClick}/>
+                            <CollectionsList />
+                        </>
                     }  
                 </div>
                 <div style={{ flex: 1, padding: '10px', height: 'calc(100vh - 20px)' }}> {/* Right */}

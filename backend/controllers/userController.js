@@ -12,7 +12,10 @@ const registerUser = async (req, res) => {
     const user = new User({
       username: req.body.username,
       password: req.body.password,
-      watchlists: [] // Adhering to your schema with watchlists
+      watchlists: [
+        { name: 'Favorites' },
+        { name: 'Watch Later' }
+      ] // Adhering to your schema with watchlists
     });
 
     // Save the user in the database
