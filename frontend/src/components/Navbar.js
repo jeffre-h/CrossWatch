@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function ButtonAppBar() {
   return (
@@ -32,6 +33,10 @@ export default function ButtonAppBar() {
             color="inherit"
           >
             <AccountCircle />
+            <span style={{fontSize: '16px', paddingLeft:'8px'}}>phacks User</span>
+            <IconButton color="inherit">
+              <KeyboardArrowDownIcon />
+            </IconButton>
           </IconButton>
         </div>
       </Toolbar>
