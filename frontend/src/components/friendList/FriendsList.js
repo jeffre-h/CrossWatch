@@ -1,7 +1,7 @@
 import Friend from "./Friend"
 import List from '@mui/material/List';
 
-// Dummy data -- implement friendship functionality later if there is time
+// hard coded data -- implement friendship functionality later if there is time
 const friendsData = [
     { name: 'Bowen B.', lastWatched:'Kung Fu Panda 4', timeAgo: '4hrs ago'},
     { name: 'Caitlyn S.', lastWatched:'Grown Ups 2', timeAgo: '1hr ago'},
@@ -18,10 +18,10 @@ const friendsData = [
 
 const FriendsList = () => {
     return (
-        <List style={{ maxHeight: '100vh', overflow:'auto' }}>
+        <List>
             {friendsData.map((f) => (
                 <Friend
-                    key={f.name} // Always use a unique key when mapping over an array
+                    key={f.name}
                     name={f.name}
                     lastWatched={f.lastWatched}
                     timeAgo={f.timeAgo}

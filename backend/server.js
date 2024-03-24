@@ -1,10 +1,11 @@
 require('dotenv').config()
 
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const movieRoutes = require('./routes/movies');
 const userRoutes = require('./routes/users');
+const watchlistRoutes = require('./routes/watchlist');
 
 // express app
 const app = express()
@@ -21,6 +22,8 @@ app.get('/', (req, res) => {
 app.use('/api/movies', movieRoutes);
 
 app.use('/api/users', userRoutes);
+
+app.use('/api/watchlist', watchlistRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
