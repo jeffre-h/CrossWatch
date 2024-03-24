@@ -41,7 +41,7 @@ const loginUser = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-  
+
 const getUserInfo = async (req, res) => {
   try {
       // Assuming that the user's ID is passed via the URL as a parameter
@@ -57,9 +57,19 @@ const getUserInfo = async (req, res) => {
       res.status(500).json({ error: error.message });
   }
   };
-  
+
+const getUserWatchlists = async (req, res) => {
+  try {
+    const watchlists = await Watchlist.find({ owner: req.user._id }).populate('movies');
+    res.json(watchlists);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = { 
     registerUser,
     loginUser,
+    getUserInfo,
+    getUserWatchlists,
 };

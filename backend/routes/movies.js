@@ -2,7 +2,8 @@ const express = require('express');
 const {
   getMovies,
   getMovie,
-  syncMoviesWithTMDB // Import the syncing function from your controller
+  syncMoviesWithTMDB,
+  getPopularMovies, 
 } = require('../controllers/movieController');
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router.get('/', getMovies);
 // GET a single movie
 router.get('/:id', getMovie);
 
+// GET 10 popular movies
+router.get('/popular', getPopularMovies);
 
 module.exports = router;

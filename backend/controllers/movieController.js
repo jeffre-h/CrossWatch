@@ -50,8 +50,20 @@ const getMovie = async (req, res) => {
   }
 };
 
+// Function to get the 10 most popular movies
+const getPopularMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find({}).sort({ popularity: -1 }).limit(10);
+    res.status(200).json(movies);
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+    res.status(500).json({ error: 'Failed to fetch popular movies' });
+  }
+};
+
 module.exports = {
   syncMoviesWithTMDB,
   getMovies,
   getMovie,
+  getPopularMovies,
 };
