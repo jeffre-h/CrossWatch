@@ -29,3 +29,7 @@ How to work in a cross-functional team with other roles
 Social aspect: adding friends, sharing, movie reviews
 Implementing AI functionality for personalized recommendations
 
+
+## Check it out!
+https://devpost.com/software/crosswatch
+
