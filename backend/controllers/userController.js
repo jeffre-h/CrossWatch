@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const { runPrompt, generatePrompt } = require('../services/openaiService');
+const Watchlist = require('../models/Watchlist');
 
 const registerUser = async (req, res) => {
   try {
@@ -67,9 +69,43 @@ const getUserWatchlists = async (req, res) => {
   }
 };
 
+const getMovieRecommendations = async (req, res) => {
+  try {
+      // Assuming req.params.userId is how you're getting the user's ID
+      const userId = req.params.userId;
+
+      // Fetch watchlists for the user and populate both the watchlists and the movies within
+      const watchlists = await Watchlist.find({ owner: userId })
+          .populate('movies');
+
+      if (!watchlists.length) {
+          return res.status(404).json({ message: "No watchlists found for user." });
+      }
+
+      // Flatten the list of movies from all watchlists, if there are multiple
+      let movies = [];
+      watchlists.forEach(watchlist => {
+          movies = [...movies, ...watchlist.movies.map(movie => movie.title)]; // Assuming you want titles for the prompt
+      });
+
+      // Generate the prompt for OpenAI based on these movies
+      const prompt = generatePrompt(movies); // Ensure this function accepts an array of movie titles
+
+      // Get recommendations from OpenAI
+      const recommendations = await runPrompt(prompt);
+
+      // Send the recommendations back to the client
+      res.json({ recommendations });
+  } catch (error) {
+      console.error('Error getting movie recommendations:', error);
+      res.status(500).json({ error: 'Failed to get movie recommendations' });
+  }
+};
+
 module.exports = { 
     registerUser,
     loginUser,
     getUserInfo,
     getUserWatchlists,
+    getMovieRecommendations,
 };

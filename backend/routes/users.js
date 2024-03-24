@@ -4,6 +4,7 @@ const {
     loginUser,
     getUserInfo,
     getUserWatchlists,
+    getMovieRecommendations
 } = require('../controllers/userController'); // Ensure correct path
 const router = express.Router();
 
@@ -14,9 +15,11 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // Route for user info
-router.get('/info/:userId', getUserInfo);
+router.get('/info', getUserInfo);
 
 // Route for user watchlists
-router.get('/watchlists/:userId', getUserWatchlists);
+router.get('/watchlists', getUserWatchlists);
+
+router.get('/users/:userId/recommendations', getMovieRecommendations);
 
 module.exports = router;

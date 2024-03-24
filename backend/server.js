@@ -4,14 +4,14 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
 const movieRoutes = require('./routes/movies');
-const userRoutes = require('./routes/users')
+const userRoutes = require('./routes/users');
 
 // express app
 const app = express()
 
 // middleware
 app.use(express.json())
-app.use(cors()); 
+app.use(cors());
 
 // routes
 app.get('/', (req, res) => {
@@ -34,3 +34,6 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => {
     console.log(err)
   })
+
+
+
