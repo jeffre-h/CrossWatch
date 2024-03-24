@@ -11,7 +11,7 @@ const HomePage = () => {
     const location = useLocation();
     const { username } = location.state || {}; 
 
-    const [activeTag, setActiveTag] = useState("All");
+    const [activeTag, setActiveTag] = useState("Popular");
     const [currentPage, setCurrentPage] = useState("Explore");
 
     const handleTagClick = (tag) => {

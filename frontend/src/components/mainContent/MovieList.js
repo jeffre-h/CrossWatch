@@ -26,34 +26,25 @@ const MovieList = ({ category }) => {
 
     return (
         <div>
-            {category === "Popular"
-                ?
+            {category === "Popular" || category === "All" ? (
                 <div style={{ display: 'flex', paddingTop: '30px', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                {movies.map((movie, index) => (
-                    <div style={{ marginBottom: '20px'}}>
-                        <Movie 
-                        key={index} 
-                        title={movie.title} 
-                        imageUrl={movie.poster_path} 
-                        year={new Date(movie.release_date).getFullYear()}
-                        /> 
-                    </div>
-                ))}
-                </div>
-                :
-                <div>
-                    {category === "For You"
-                        ?
-                        <div>FOR YOU</div>
-                        :
-                        <div>ALL
+                    {movies.map((movie, index) => (
+                        <div key={index} style={{ marginBottom: '20px'}}>
+                            <Movie 
+                                title={movie.title} 
+                                imageUrl={movie.poster_path} 
+                                year={new Date(movie.release_date).getFullYear()}
+                            /> 
                         </div>
-                    }
+                    ))}
                 </div>
-
-            }
+            ) : (
+                <div>
+                    FOR YOU GOES HERE
+                </div>
+            )}
         </div>
-      );
-}
+    );
+};
 
 export default MovieList;
