@@ -6,16 +6,15 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function ButtonAppBar({username}) {
-  console.log(username)
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#fff', color: '#000' }}>
       <Toolbar>
         <div>
-          <span style={{fontWeight: 'bold', fontSize: '20px'}}>XWATCH</span> { /* STILL NEED TO ADD LOGO  */ }
+          <span style={{fontWeight: 'bold', fontSize: '20px'}}>CROSS WATCH</span> { /* STILL NEED TO ADD LOGO  */ }
 
           <Button color="inherit">Explore</Button>
-          <Button color="inherit">Movies</Button>
-          <Button color="inherit">Shows</Button>
+          <Button color="inherit">Collections</Button>
         </div>
 
         <div style={{marginLeft: 'auto'}}>

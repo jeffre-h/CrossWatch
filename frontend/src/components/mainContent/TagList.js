@@ -2,16 +2,16 @@ import * as React from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-const TagList = () => {
-    const [activeTag, setActiveTag] = React.useState("For You"); // POPULAR as default
+const TagList = ({ activeTag, onTagClick }) => {
  
-    const handleClick = (tag) => {
-        setActiveTag(tag);
-    };
+    // const handleClick = (tag) => {
+    //     setActiveTag(tag);
+    // };
 
     const tags = [
-        "For You", "Popular", "Most Reviewed", "1----", "2----", "3----", "4----"
+        "Popular", "For You", "Most Reviewed", "Most Contreversial", "Trending", "Latest"
     ];
+    const enabledTags = ["For You", "Popular"];
 
     return (
         <Stack direction="row" spacing={2}>
@@ -19,7 +19,8 @@ const TagList = () => {
                 <Chip 
                     key={tag}
                     label={tag}
-                    onClick={() => handleClick(tag)} 
+                    onClick={() => onTagClick(tag)} 
+                    disabled={!enabledTags.includes(tag)}
                     variant={activeTag === tag ? 'filled' : 'outlined'}
                 />
             ))}
