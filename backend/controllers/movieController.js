@@ -1,20 +1,24 @@
 const Movie = require('../models/movieModel');
-const { fetchMoviesFromTMDB } = require('../services/tmdbService'); // Assuming you have this service
+const { fetchMoviesFromTMDB } = require('../services/tmdbService'); 
 
 // Controller for syncing movies with TMDB
 async function syncMoviesWithTMDB(req, res) {
   try {
-    const moviesFromTMDB = await fetchMoviesFromTMDB();
-    // Example operation: iterate and upsert movies
-    for (const movieData of moviesFromTMDB) {
-      await Movie.findOneAndUpdate(
-        { tmdbId: movieData.id }, 
-        movieData, 
-        { upsert: true, new: true, setDefaultsOnInsert: true }
-      );
+    let page = 1;
+    const totalPages = 1000; 
+    while (page <= totalPages) {
+      const moviesFromTMDB = await fetchMoviesFromTMDB(page); 
+      for (const movieData of moviesFromTMDB) {
+        await Movie.findOneAndUpdate(
+          { tmdbId: movieData.id },
+          movieData,
+          { upsert: true, new: true, setDefaultsOnInsert: true }
+        );
+      }
+      console.log(`Movies from page ${page} synced successfully`);
+      page++;
     }
-    console.log("Movies synced successfully");
-    res.json({ message: "Movies synced successfully" });
+    res.json({ message: `Movies from pages 1 to ${totalPages} synced successfully` });
   } catch (error) {
     console.error('Sync error:', error);
     res.status(500).json({ error: 'Failed to sync movies with TMDB' });
