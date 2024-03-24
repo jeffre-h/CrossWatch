@@ -5,7 +5,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({username}) {
+  console.log(username)
   return (
     <AppBar position="static" sx={{ backgroundColor: '#fff', color: '#000' }}>
       <Toolbar>
@@ -33,7 +34,7 @@ export default function ButtonAppBar() {
             color="inherit"
           >
             <AccountCircle />
-            <span style={{fontSize: '16px', paddingLeft:'8px'}}>phacks User</span>
+            <span style={{fontSize: '16px', paddingLeft:'8px'}}>{username ? username : 'guest'}</span>
             <IconButton color="inherit">
               <KeyboardArrowDownIcon />
             </IconButton>
